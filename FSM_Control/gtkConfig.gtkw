@@ -1,0 +1,46 @@
+[*]
+[*] GTKWave Analyzer v3.3.93 (w)1999-2018 BSI
+[*] Thu Nov  8 02:11:24 2018
+[*]
+[dumpfile] "/home/yasser/Documents/IE0523-DigitalesII/Proyecto2_IE0523_II-2018/FSM_Control/fsmControl.vcd"
+[dumpfile_mtime] "Thu Nov  8 01:55:27 2018"
+[dumpfile_size] 8573
+[savefile] "/home/yasser/Documents/IE0523-DigitalesII/Proyecto2_IE0523_II-2018/FSM_Control/gtkConfig.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] 2399 -38
+*-3.970300 4 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testbench.
+[sst_width] 229
+[signals_width] 222
+[sst_expanded] 1
+[sst_vpaned_height] 139
+@28
+testbench.prob.clk
+testbench.prob.reset_L
+testbench.fsmCondu.init
+testbench.fsmCondu.FIFO_error
+testbench.fsmCondu.FIFO_empty
+@22
+testbench.prob.umbral_VCFC[7:0]
+@200
+-Conductual
+@24
+testbench.fsmCondu.nxt_state[4:0]
+testbench.fsmCondu.state[4:0]
+@28
+testbench.prob.active_condu
+testbench.prob.idle_condu
+testbench.prob.error_condu
+@22
+testbench.prob.umbrales_VCFC_condu[7:0]
+@200
+-Estructural
+@28
+testbench.prob.active_estru
+testbench.prob.idle_estru
+testbench.prob.error_estru
+@23
+testbench.prob.umbrales_VCFC_estru[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
