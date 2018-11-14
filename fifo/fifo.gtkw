@@ -1,0 +1,61 @@
+[*]
+[*] GTKWave Analyzer v3.3.93 (w)1999-2018 BSI
+[*] Wed Nov 14 18:51:38 2018
+[*]
+[dumpfile] "/home/pgochez/Documents/UCR/DigitalesII/Proyecto2/Proyecto2_IE0523_II-2018/fifo/fifo.vcd"
+[dumpfile_mtime] "Wed Nov 14 18:36:33 2018"
+[dumpfile_size] 3817
+[savefile] "/home/pgochez/Documents/UCR/DigitalesII/Proyecto2/Proyecto2_IE0523_II-2018/fifo/fifo.gtkw"
+[timestart] 0
+[size] 1920 1016
+[pos] -1 -1
+*-33.266277 3000000000 3000000000 19000000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testbench.
+[treeopen] testbench.each.
+[sst_width] 229
+[signals_width] 169
+[sst_expanded] 1
+[sst_vpaned_height] 284
+@28
+testbench.clk
+testbench.reset
+[color] 2
+testbench.push
+@22
+[color] 2
+testbench.data_in[4:0]
+@28
+[color] 3
+testbench.pop
+@22
+[color] 3
+testbench.data_out[4:0]
+@28
+testbench.empty
+testbench.reset
+@22
+testbench.each.data_in[4:0]
+testbench.each.data_out[4:0]
+@28
+testbench.each.empty
+@24
+testbench.each.filled[2:0]
+@22
+testbench.each.to_fifo[4:0]
+@28
+testbench.each.push
+@24
+testbench.each.wr_ptr[2:0]
+testbench.each.rd_ptr[2:0]
+@28
+testbench.each.channel.write
+testbench.each.channel.read
+@24
+testbench.each.channel.addressR[2:0]
+testbench.each.channel.addressW[2:0]
+@29
+testbench.each.almost_full
+@28
+testbench.each.almost_empty
+[pattern_trace] 1
+[pattern_trace] 0

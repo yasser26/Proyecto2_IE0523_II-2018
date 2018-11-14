@@ -1,0 +1,64 @@
+module probador #(
+parameter ADDR_WIDTH = 3,
+parameter BUS_SIZE = 5,
+parameter MEM_LENGTH = 1 << ADDR_WIDTH)(
+
+ output reg 		   clk,
+ output reg 		   reset ,
+ output reg 		   push,pop,
+ output reg [BUS_SIZE-1:0] data_in,
+ output reg 		   valid, 
+ 
+ //input wire [BUS_SIZE-1:0]   data_out_synth,
+ input [BUS_SIZE-1:0] 	   data_out_cond,
+ input 			   empty,
+ input 			   continua,
+ input 			   pause);
+   
+   
+   // Probador
+   initial begin
+   $dumpfile("fifo.vcd");
+	$dumpvars();
+   @(posedge clk);
+      reset<=0;
+   
+   
+   @(posedge clk);
+      repeat (MEM_LENGTH-2) begin
+	 push <= 1;
+	 @(posedge clk);	
+	 data_in <= $random;
+	 valid <= ~valid;
+      
+	end
+   
+   @(posedge clk);
+   @(posedge clk);
+      repeat (MEM_LENGTH) begin
+	 pop <= 1;
+	   
+	 @(posedge clk);
+	 data_in<=$random;
+	 valid <= ~valid;
+      
+	end
+   
+   pop <= 0;
+   
+   @(posedge clk);@(posedge clk);
+   $finish;
+end  
+   
+   initial clk <= 0;
+   initial reset<=1;
+   initial valid<=0;
+   initial data_in<=0;
+   initial pop<=0;
+   initial push<=0;
+   
+   
+   always #1 clk <= ~clk;
+   
+
+endmodule 
