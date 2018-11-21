@@ -1,0 +1,55 @@
+`timescale 1s/1ns
+`include"probador.v"
+`include "fifo.v"
+//`include "memoriaSynth.v"
+`include "cmos_cells.v"
+
+module testbench();
+   parameter ADDR_WIDTH = 3;
+   parameter BUS_SIZE = 5;
+   // No modificar estos parametros
+   parameter MEM_LENGTH = 1 << ADDR_WIDTH;
+   
+   /*AUTOWIRE*/
+   // Beginning of automatic wires (for undeclared instantiated-module outputs)
+   wire			clk;			// From prob of probador.v
+   wire			continua;		// From each of fifo.v
+   wire [BUS_SIZE-1:0]	data_in;		// From prob of probador.v
+   wire [BUS_SIZE-1:0]	data_out;		// From each of fifo.v
+   wire			empty;			// From each of fifo.v
+   wire			pause;			// From each of fifo.v
+   wire			pop;			// From prob of probador.v
+   wire			push;			// From prob of probador.v
+   wire			reset;			// From prob of probador.v
+   wire			valid;			// From prob of probador.v
+   // End of automatics
+   fifo each (/*AUTOINST*/
+	      // Outputs
+	      .pause			(pause),
+	      .continua			(continua),
+	      .empty			(empty),
+	      .data_out			(data_out[BUS_SIZE-1:0]),
+	      // Inputs
+	      .clk			(clk),
+	      .reset			(reset),
+	      .pop			(pop),
+	      .push			(push),
+	      .data_in			(data_in[BUS_SIZE-1:0]));
+   
+        
+   
+   probador prob(/*AUTOINST*/
+		 // Outputs
+		 .clk			(clk),
+		 .reset			(reset),
+		 .push			(push),
+		 .pop			(pop),
+		 .data_in		(data_in[BUS_SIZE-1:0]),
+		 .valid			(valid),
+		 // Inputs
+		 .empty			(empty),
+		 .data_out_cond		(data_out[BUS_SIZE-1:0]),
+		 .continua		(continua),
+		 .pause			(pause));
+   
+   endmodule 

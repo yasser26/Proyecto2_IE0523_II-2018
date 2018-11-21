@@ -1,0 +1,24 @@
+#Lectura del archivo
+read_verilog fifo.v 	
+hierarchy -check -top fifo
+
+#Optimizaciones				
+proc; opt; fsm; opt; memory; opt 	
+
+#Mapeo a biblioteca interna de celdas
+techmap; opt
+
+#Mapeo logica a cmos_cells.lib
+abc -liberty cmos_cells.lib
+
+#Mapeo FFs a cmos_cells.lib
+dfflibmap -liberty cmos_cells.lib
+
+#Diagrama
+#show -lib cmos_cells.v
+
+#Limpieza
+clean
+
+#Escritura archivo sintetizado								
+write_verilog -noattr fifoSynth.v
