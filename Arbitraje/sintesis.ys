@@ -1,0 +1,32 @@
+
+# Se lee el diseño .v
+read_verilog arbitro.v
+
+# Síntesis high-level
+
+# revisión de la jerarquía del diseño
+hierarchy -check -top arbitro
+
+proc; opt
+
+# detecta y optimiza FSM encodings
+fsm; opt
+
+# implementa memorias (arrays)
+memory; opt
+
+# convierte a compuertas logicas
+techmap; opt
+
+# mapea los flip flops de libreria cmos_cells
+dfflibmap -liberty cmos_cells.lib
+
+# Usa librería cmos_cells
+abc -liberty cmos_cells.lib
+#show -lib cmos_cells.v
+
+clean
+
+
+# escritura del diseño sintetizado
+write_verilog arbitroEstructural.v

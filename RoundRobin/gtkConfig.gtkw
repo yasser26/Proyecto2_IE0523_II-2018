@@ -1,0 +1,39 @@
+[*]
+[*] GTKWave Analyzer v3.3.93 (w)1999-2018 BSI
+[*] Thu Nov 15 00:29:55 2018
+[*]
+[dumpfile] "/home/yasser/Documents/IE0523-DigitalesII/Proyecto2_IE0523_II-2018/RoundRobin/round_robin.vcd"
+[dumpfile_mtime] "Thu Nov 15 00:25:49 2018"
+[dumpfile_size] 4176
+[savefile] "/home/yasser/Documents/IE0523-DigitalesII/Proyecto2_IE0523_II-2018/RoundRobin/gtkConfig.gtkw"
+[timestart] 0
+[size] 1366 704
+[pos] -1 -1
+*-4.574371 43 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testbench.
+[sst_width] 229
+[signals_width] 164
+[sst_expanded] 1
+[sst_vpaned_height] 175
+@28
+testbench.prob.clk
+testbench.prob.reset_L
+testbench.prob.request0
+testbench.prob.request1
+@200
+-Conductual
+@28
+testbench.prob.portMux_condu
+testbench.prob.validMux_condu
+testbench.prob.pop0_condu
+testbench.prob.pop1_condu
+@200
+-Estructural
+@28
+testbench.prob.portMux_estru
+testbench.prob.validMux_estru
+testbench.prob.pop0_estru
+@29
+testbench.prob.pop1_estru
+[pattern_trace] 1
+[pattern_trace] 0
