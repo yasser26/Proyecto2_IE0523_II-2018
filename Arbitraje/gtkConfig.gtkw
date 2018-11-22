@@ -1,23 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.93 (w)1999-2018 BSI
-[*] Wed Nov 21 22:22:16 2018
+[*] Thu Nov 22 00:46:51 2018
 [*]
 [dumpfile] "/home/yasser/Documents/IE0523-DigitalesII/Proyecto2_IE0523_II-2018/Arbitraje/test.vcd"
-[dumpfile_mtime] "Wed Nov 21 22:21:23 2018"
-[dumpfile_size] 32692
+[dumpfile_mtime] "Thu Nov 22 00:36:12 2018"
+[dumpfile_size] 42245
 [savefile] "/home/yasser/Documents/IE0523-DigitalesII/Proyecto2_IE0523_II-2018/Arbitraje/gtkConfig.gtkw"
 [timestart] 0
 [size] 1366 704
 [pos] -1 -1
-*-2.476191 5 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.476191 16 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] testbench.
 [sst_width] 229
 [signals_width] 190
 [sst_expanded] 1
 [sst_vpaned_height] 139
-@29
-testbench.prob.clk
 @28
+testbench.prob.clk
 testbench.prob.reset_L
 @c00022
 testbench.arbitroCondu.VC0_p0[4:0]
@@ -34,6 +33,7 @@ testbench.arbitroCondu.VC0_p1[4:0]
 testbench.arbitroCondu.VC1_p0[4:0]
 testbench.arbitroCondu.VC1_p1[4:0]
 @28
+testbench.arbitroCondu.validBits[3:0]
 [color] 7
 testbench.arbitroCondu.emptyVC0_p0
 [color] 7
@@ -54,6 +54,8 @@ testbench.arbitroCondu.muxMultiOut[5:0]
 testbench.arbitroCondu.dataOut_0[4:0]
 [color] 2
 testbench.arbitroCondu.dataOut_1[4:0]
+@29
+testbench.arbitroCondu.validBitsOut[1:0]
 @28
 testbench.arbitroCondu.selectMUX_VC1
 @22
