@@ -1,0 +1,37 @@
+[*]
+[*] GTKWave Analyzer v3.3.93 (w)1999-2018 BSI
+[*] Wed Nov 14 10:27:09 2018
+[*]
+[dumpfile] "/home/pgochez/Documents/UCR/DigitalesII/Proyecto2/Proyecto2_IE0523_II-2018/memoria/dump.vcd"
+[dumpfile_mtime] "Wed Nov 14 10:25:58 2018"
+[dumpfile_size] 737695
+[savefile] "/home/pgochez/Documents/UCR/DigitalesII/Proyecto2/Proyecto2_IE0523_II-2018/memoria/dump.gtkw"
+[timestart] 0
+[size] 1920 1016
+[pos] -1 -1
+*-33.784824 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 229
+[signals_width] 190
+[sst_expanded] 1
+[sst_vpaned_height] 284
+@28
+testbench.clk
+@22
+[color] 2
+testbench.addressR[3:0]
+@28
+[color] 2
+testbench.read
+@22
+[color] 3
+testbench.addressW[3:0]
+@28
+[color] 3
+testbench.write
+@23
+testbench.data_in[31:0]
+@22
+testbench.data_out_cond[31:0]
+testbench.data_out_synth[31:0]
+[pattern_trace] 1
+[pattern_trace] 0
