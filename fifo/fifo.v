@@ -39,6 +39,7 @@ module fifo#(// Constantes
 	       // Inputs
 	
 	       .clk			(clk),
+	       .reset                   (reset),
 	       .read			(pop),
 	       .write			(write_en), 
 	       .data_in			(to_fifo),

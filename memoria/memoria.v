@@ -1,6 +1,6 @@
 module memoria#(
 	// Constantes
-	parameter BUS_SIZE = 32,
+	parameter BUS_SIZE = 4,
 	parameter ADDR_WIDTH = 4,
 	parameter NUM_MEM_UNITS = 4,
 	parameter MEM_LENGTH = 1 << ADDR_WIDTH,

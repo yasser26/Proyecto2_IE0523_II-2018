@@ -6,7 +6,7 @@
 
 module testbench();
    parameter ADDR_WIDTH = 4;
-   parameter BUS_SIZE = 32;
+   parameter BUS_SIZE = 4;
    // No modificar estos parametros
    parameter MEM_LENGTH = 1 << ADDR_WIDTH;
    
@@ -33,12 +33,12 @@ module testbench();
 		.addressW		(addressW[ADDR_WIDTH-1:0]));
    memoriaSynth memSyn(/*AUTOINST*/
 		       // Outputs
-		       .data_out	(data_out_synth[31:0]),
+		       .data_out	(data_out_synth[3:0]),
 		       // Inputs
 		       .addressR	(addressR[3:0]),
 		       .addressW	(addressW[3:0]),
 		       .clk		(clk),
-		       .data_in		(data_in[31:0]),
+		       .data_in		(data_in[3:0]),
 		       .read		(read),
 		       .write		(write));
    

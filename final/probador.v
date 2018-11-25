@@ -35,8 +35,8 @@ parameter MEM_LENGTH = 1 << ADDR_WIDTH)(
    initial begin
    $dumpfile("pcie.vcd");
 	$dumpvars();
-   @(posedge clk);
-   @(posedge clk);
+
+   #2 @(posedge clk);
       reset<=0;
    
    

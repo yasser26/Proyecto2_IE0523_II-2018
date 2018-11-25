@@ -1,6 +1,6 @@
 module probador #(
 parameter ADDR_WIDTH = 4,
-parameter BUS_SIZE = 32,
+parameter BUS_SIZE = 4,
 // No modificar estos parametros
 parameter MEM_LENGTH = 1 << ADDR_WIDTH)(
 
