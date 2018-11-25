@@ -1138,9 +1138,7 @@ module roundRobinEstructural(clk, reset_L, request0, request1, portMux, validMux
   wire _00_;
   (* src = "roundRobinEstructural.v:12" *)
   wire _01_;
-  (* src = "roundRobinEstructural.v:12" *)
   wire _02_;
-  (* src = "roundRobinEstructural.v:12" *)
   wire _03_;
   wire _04_;
   wire _05_;
@@ -1150,8 +1148,6 @@ module roundRobinEstructural(clk, reset_L, request0, request1, portMux, validMux
   wire _09_;
   wire _10_;
   wire _11_;
-  wire _12_;
-  wire _13_;
   (* src = "roundRobinEstructural.v:1" *)
   input clk;
   (* src = "roundRobinEstructural.v:7" *)
@@ -1168,94 +1164,82 @@ module roundRobinEstructural(clk, reset_L, request0, request1, portMux, validMux
   input reset_L;
   (* src = "roundRobinEstructural.v:6" *)
   output validMux;
-  NOT _14_ (
+  NOT _12_ (
     .A(request0),
-    .Y(_13_)
+    .Y(_11_)
+  );
+  NOR _13_ (
+    .A(_11_),
+    .B(portMux),
+    .Y(_02_)
+  );
+  NAND _14_ (
+    .A(request1),
+    .B(reset_L),
+    .Y(_03_)
   );
   NOR _15_ (
-    .A(portMux),
-    .B(_13_),
-    .Y(_04_)
+    .A(_02_),
+    .B(_03_),
+    .Y(pop_1)
   );
   NAND _16_ (
     .A(request1),
-    .B(reset_L),
+    .B(portMux),
+    .Y(_04_)
+  );
+  NOT _17_ (
+    .A(_04_),
     .Y(_05_)
   );
-  NOR _17_ (
-    .A(_04_),
-    .B(_05_),
-    .Y(_01_)
-  );
   NAND _18_ (
-    .A(request1),
-    .B(portMux),
+    .A(request0),
+    .B(reset_L),
     .Y(_06_)
   );
-  NOT _19_ (
-    .A(_06_),
+  NOR _19_ (
+    .A(request0),
+    .B(request1),
     .Y(_07_)
   );
-  NAND _20_ (
+  NOR _20_ (
+    .A(_05_),
+    .B(_06_),
+    .Y(pop_0)
+  );
+  NAND _21_ (
     .A(reset_L),
-    .B(request0),
+    .B(_07_),
     .Y(_08_)
   );
-  NOR _21_ (
-    .A(request1),
-    .B(request0),
-    .Y(_09_)
-  );
-  NOR _22_ (
-    .A(_07_),
-    .B(_08_),
-    .Y(_00_)
+  NOT _22_ (
+    .A(_08_),
+    .Y(_01_)
   );
   NAND _23_ (
-    .A(reset_L),
-    .B(_09_),
-    .Y(_10_)
+    .A(request0),
+    .B(portMux),
+    .Y(_09_)
   );
   NOT _24_ (
-    .A(_10_),
-    .Y(_03_)
+    .A(_09_),
+    .Y(_10_)
   );
-  NAND _25_ (
-    .A(portMux),
-    .B(request0),
-    .Y(_11_)
-  );
-  NOT _26_ (
-    .A(_11_),
-    .Y(_12_)
-  );
-  NOR _27_ (
-    .A(_05_),
-    .B(_12_),
-    .Y(_02_)
+  NOR _25_ (
+    .A(_03_),
+    .B(_10_),
+    .Y(_00_)
   );
   (* src = "roundRobinEstructural.v:12" *)
-  DFF _28_ (
+  DFF _26_ (
     .C(clk),
-    .D(_02_),
+    .D(_00_),
     .Q(portMux)
   );
   (* src = "roundRobinEstructural.v:12" *)
-  DFF _29_ (
-    .C(clk),
-    .D(_03_),
-    .Q(validMux)
-  );
-  (* src = "roundRobinEstructural.v:12" *)
-  DFF _30_ (
-    .C(clk),
-    .D(_00_),
-    .Q(pop_0)
-  );
-  (* src = "roundRobinEstructural.v:12" *)
-  DFF _31_ (
+  DFF _27_ (
     .C(clk),
     .D(_01_),
-    .Q(pop_1)
+    .Q(validMux)
   );
 endmodule
