@@ -51,6 +51,7 @@ module fifo#(// Constantes
       if (reset)begin
 	 rd_ptr<=0;
 	 wr_ptr<=0;
+	 valid_out <= 0;
       end
       else begin
 	 rd_ptr<= pop ? (rd_ptr == 3'b111 ? 0 : rd_ptr+1 ): rd_ptr; // 
