@@ -7,6 +7,7 @@ module memoria#(
 	) (
 	input 			  clk,
 	input 			  read,
+	input 			  reset,
 	input 			  write,
 	input [BUS_SIZE-1:0] 	  data_in,
 	input [ADDR_WIDTH-1:0] 	  addressR, // dirección de leer
@@ -18,8 +19,12 @@ module memoria#(
 reg [BUS_SIZE-1:0] mem [MEM_LENGTH-1:0]; // creación de la memoria
 
 always @ (posedge clk) begin
-  	if (write)  mem[addressW] <= data_in;
-  	if (read) data_out <= mem[addressR];
+	if(reset)
+	    data_out <= 0;
+	else begin
+  		if (write)  mem[addressW] <= data_in;
+  		if (read) data_out <= mem[addressR];
+	end
 	   
 end
 

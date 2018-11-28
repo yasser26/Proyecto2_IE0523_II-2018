@@ -44,7 +44,8 @@ module FIFO_mod#(// Constantes
 	
 	       .clk			(clk),
 	       .read			(pop),
-	       .write			(push), 
+	       .write			(push),
+	 	.reset(reset), 
 	       .data_in			(to_fifo),
 	       .addressR		(rd_ptr),
 	       .addressW		(wr_ptr));
@@ -54,6 +55,8 @@ module FIFO_mod#(// Constantes
       if (reset)begin
 	 rd_ptr<=0;
 	 wr_ptr<=0;
+	 valid_out <= 0;
+	 valid_bus <= 0;
 	// filled <=0;
 	 
       end

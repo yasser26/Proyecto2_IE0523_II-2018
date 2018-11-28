@@ -8,7 +8,6 @@ module roundRobin ( input clk,
                     output reg pop_1);
 
   reg valid;
-
   always @ (posedge clk) begin
     if (reset_L) begin
       portMux <= 0;

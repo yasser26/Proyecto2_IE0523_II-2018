@@ -1,21 +1,17 @@
 [*]
 [*] GTKWave Analyzer v3.3.93 (w)1999-2018 BSI
-[*] Wed Nov 28 00:02:05 2018
+[*] Wed Nov 28 20:05:20 2018
 [*]
-[dumpfile] "/home/pgochez/Documents/UCR/DigitalesII/Proyecto2/Proyecto2_IE0523_II-2018/final/pcie.vcd"
-[dumpfile_mtime] "Wed Nov 28 00:01:37 2018"
-[dumpfile_size] 420402
-[savefile] "/home/pgochez/Documents/UCR/DigitalesII/Proyecto2/Proyecto2_IE0523_II-2018/final/final.gtkw"
-[timestart] 0
-[size] 1920 1016
+[dumpfile] "/home/yasser/Documents/IE0523-DigitalesII/Proyecto2_IE0523_II-2018/final/pcie.vcd"
+[dumpfile_mtime] "Wed Nov 28 19:17:50 2018"
+[dumpfile_size] 513223
+[savefile] "/home/yasser/Documents/IE0523-DigitalesII/Proyecto2_IE0523_II-2018/final/final.gtkw"
+[timestart] 27190000000
+[size] 1366 704
 [pos] -1 -1
-*-32.217331 37000000000 7040000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-32.217331 36670000000 7040000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] testbench.
 [treeopen] testbench.transac.
-[treeopen] testbench.transac.fifo_VC0P0.
-[treeopen] testbench.transac.fifo_VC0P1.
-[treeopen] testbench.transac.fifo_VC1P0.
-[treeopen] testbench.transacSynth.
 [treeopen] testbench.transacSynth.arbitro1.
 [sst_width] 325
 [signals_width] 207
@@ -24,10 +20,6 @@
 @28
 testbench.clk
 testbench.reset
-@22
-testbench.transac.umbralA[3:0]
-testbench.transac.umbralB[3:0]
-@28
 testbench.transac.valid_p0
 testbench.transac.valid_p1
 @22
@@ -36,6 +28,7 @@ testbench.data_p0[5:0]
 [color] 2
 testbench.data_p1[5:0]
 @200
+-FIFO's
 -Canal 0
 -Canal 0 Puerto 0
 @28
@@ -52,12 +45,11 @@ testbench.transac.valid_VC0P0
 [color] 2
 testbench.transac.pop_VC0P0
 @22
-[color] 2
-testbench.transac.arbitro1.VC0_p0[4:0]
+testbench.transac.ofifo_VC0P0[4:0]
 @200
 -Canal 0 Puerto 1
 @28
-testbench.transac.fifo_VC0P1.empty
+testbench.transac.empty_VC0P1
 [color] 3
 testbench.transac.push_VC0P1
 @22
@@ -81,21 +73,18 @@ testbench.transac.ofifo_VC0P1[4:0]
 @1401200
 -group_end
 @200
--Canales 1
+-Canal 1
 -Canal 1 Puerto 0
 @28
 [color] 3
 testbench.transac.empty_VC1P0
-testbench.transac.fifo_VC1P0.rd_ptr[2:0]
-testbench.transac.fifo_VC1P0.wr_ptr[2:0]
-testbench.transac.fifo_VC1P0.fifo_error
 [color] 3
 testbench.transac.push_VC1P0
-testbench.transac.fifo_VC1P0.valid
 @22
 [color] 3
 testbench.transac.data_VC1P0[4:0]
 @28
+testbench.transac.valid_VC1P0
 [color] 3
 testbench.transac.pop_VC1P0
 @22
@@ -115,14 +104,38 @@ testbench.transac.data_VC1P1[4:0]
 [color] 2
 testbench.transac.pop_VC1P1
 @22
-testbench.transac.arbitro1.dataOut_0[4:0]
+testbench.transac.ofifo_VC1P1[4:0]
 testbench.transac.arbitro1.dataOut_1[4:0]
-@28
-testbench.transac.fsm.FIFO_empty
-testbench.transac.fsm.FIFO_error
+@200
+-Arbitro
 @22
-testbench.transac.fsm.nxt_state[4:0]
-testbench.transac.fsm.state[4:0]
+testbench.transac.arbitro1.VC0_p0[4:0]
+testbench.transac.arbitro1.VC0_p1[4:0]
+testbench.transac.arbitro1.VC1_p0[4:0]
+testbench.transac.arbitro1.VC1_p1[4:0]
+@28
+[color] 7
+testbench.transac.arbitro1.selectMUX_VC0
+@22
+[color] 7
+testbench.transac.arbitro1.muxVC0_muxMulti[4:0]
+@28
+[color] 5
+testbench.transac.arbitro1.selectMUX_VC1
+@22
+[color] 5
+testbench.transac.arbitro1.muxVC1_muxMulti[4:0]
+@28
+testbench.transac.arbitro1.validMuxVC0
+@23
+testbench.transac.arbitro1.muxMultiOut[5:0]
+@28
+testbench.transac.arbitro1.validMux_VC0
+@22
+[color] 2
+testbench.transac.arbitro1.dataOut_0[4:0]
+[color] 3
+testbench.transac.arbitro1.dataOut_1[4:0]
 @200
 -Estructural
 @22

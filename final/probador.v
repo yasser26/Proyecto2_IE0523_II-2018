@@ -63,7 +63,6 @@ parameter MEM_LENGTH = 1 << ADDR_WIDTH)(
       
    @(posedge clk);
       reset<=0;
-      init <=0;
         
    
    @(posedge clk); /// 1
