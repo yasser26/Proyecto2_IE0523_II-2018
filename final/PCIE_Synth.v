@@ -1298,7 +1298,6 @@ module PCIE_Synth(clk, reset, valid_p0, valid_p1, data_p0, data_p1, umbralA, umb
   wire push_VC1P0;
   wire push_VC1P1;
   input reset;
-  wire reset_L;
   input [3:0] umbralA;
   input [3:0] umbralB;
   output [7:0] umbrales_VCFC;

@@ -94,7 +94,7 @@ module PCIE_trans (input clk , input reset, input valid_p0 , input valid_p1 ,inp
 		    .dataOut_1		(out_p1[4:0]),
 		    // Inputs
 		    .clk		(clk),
-		    .reset_L		(reset_L),
+		    .reset_L		(reset),
 		    .VC0_p0		(ofifo_VC0P0),
 		    .VC1_p0		(ofifo_VC1P0),
 		    .VC0_p1		(ofifo_VC0P1),
@@ -201,7 +201,5 @@ module PCIE_trans (input clk , input reset, input valid_p0 , input valid_p1 ,inp
 		  .umbral_VCFC		({umbralA,umbralB}),
 		  .FIFO_error		(FIFO_error),
 		  .FIFO_empty		(FIFO_empty));
-   
-   
    
    endmodule

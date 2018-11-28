@@ -124,10 +124,10 @@ parameter MEM_LENGTH = 1 << ADDR_WIDTH)(
       
       @(posedge clk); 
       data_p0<='b111001; // C1 19
-      valid_p0<=1;
+      valid_p0<=0;
       
       data_p1<='b101101;// C1 0D
-      valid_p1<=1;
+      valid_p1<=0;
 
       repeat(7)begin
       @(posedge clk); 
@@ -170,10 +170,10 @@ parameter MEM_LENGTH = 1 << ADDR_WIDTH)(
       //////////////////////////////////////////////////////
       @(posedge clk);
       data_p0<='b110000; // 0
-      valid_p0<=0;
+      valid_p0<=1;
       
       data_p1<='b100000; // 0
-      valid_p1<=0;
+      valid_p1<=1;
 
       #100
    $finish;
