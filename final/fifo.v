@@ -18,23 +18,20 @@ module FIFO_mod#(// Constantes
 	output 			    continua,
 	output 			    empty,
 	output 			    fifo_error,
-	output [ADDR_WIDTH:0] 	    filled,
 	output 			    almost_full , 
 	output 			    almost_empty,
+	output [BUS_SIZE-1:0] 	    data_out,
+	output [ADDR_WIDTH:0]   filled,
 	output reg [ADDR_WIDTH-1:0] rd_ptr, // dirección de escribir
 	output reg [ADDR_WIDTH-1:0] wr_ptr,
-	output reg 		    valid_out,
-	output [BUS_SIZE-1:0] 	    data_out
-
+	output reg 		    valid_out
 );
    // Para la lógica de push y pop se debe saber que al realizar un pop se lee el dato de la memoria y en esa posición se escribe un 0 para indicar que se encuentra libre para ser utilizada cuando se realice un pop
-   //reg [ADDR_WIDTH-1:0]       wr_ptr;
+  
    reg [MEM_LENGTH-1:0]       valid_bus; // bus del tamaño de la memoria
   
-   //reg [ADDR_WIDTH-1:0] 	  rd_ptr; // dirección de escribir
-   //wire	[ADDR_WIDTH:0]			 filled;
+      
    
-  // wire 				  almost_full , almost_empty,write_en;
    wire [BUS_SIZE-1:0] 			  to_fifo;
 
    
@@ -57,17 +54,28 @@ module FIFO_mod#(// Constantes
       if (reset)begin
 	 rd_ptr<=0;
 	 wr_ptr<=0;
+	// filled <=0;
+	 
       end
       else begin
-	 rd_ptr<= pop ? (rd_ptr == 3'b111 ? 0 : rd_ptr+1 ): rd_ptr; // 
+	 rd_ptr<= pop ? (rd_ptr == 3'b111 ? 0 : rd_ptr+1 ): rd_ptr ; // 
 	 
 	 wr_ptr<= push ? (wr_ptr == 3'b111 ? 0 : wr_ptr+1) : wr_ptr;
+	// filled <= push ? filled+1: pop ? filled-1 : filled;
 	 
 	 if (push)  valid_bus[wr_ptr] <= valid;
 	 if (pop)   valid_out <= valid_bus[rd_ptr];
 	 
       end
    end // always@ (posedge clk)
+
+ /*  always@(*)begin
+      if(reset)
+	filled=0;
+      else
+	filled = push ? filled+1: pop ? filled-1 : filled;
+      
+      end*/
 
    assign fifo_error = push && filled == 7 ? 1 : 0;
    

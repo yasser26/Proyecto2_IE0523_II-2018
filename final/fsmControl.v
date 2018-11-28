@@ -21,7 +21,7 @@ module fsmControl  ( input clk,
   reg [7:0] nxt_umbrales;
 
   always @ ( posedge clk ) begin
-    if (~reset_L) begin // Reinicio de senales
+    if (reset_L) begin // Reinicio de senales
       state <= RESET;
 
 

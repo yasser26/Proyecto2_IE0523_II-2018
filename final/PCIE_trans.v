@@ -2,8 +2,7 @@
 `include"fsmControl.v"
 `include"arbitro.v"
 
-module PCIE_trans (input clk , input reset, input valid_p0 , input valid_p1 ,input [5:0] data_p0, input [5:0] data_p1,input [3:0] umbralA, input[3:0] umbralB, output[4:0] out_p0, output[4:0] out_p1,output pause_VC0P0,
-   output 	pause_VC1P0, output pause_VC0P1, output pause_VC1P1, output	continue_VC0P0, output 	continue_VC1P0, output 	continue_VC0P1, output 	continue_VC1P1);
+module PCIE_trans (input clk , input reset, input valid_p0 , input valid_p1 ,input [5:0] data_p0, input [5:0] data_p1,input [3:0] umbralA, input[3:0] umbralB, input init , output[4:0] out_p0, output[4:0] out_p1,output pause_VC0P0,  output 	pause_VC1P0, output pause_VC0P1, output pause_VC1P1, output	continue_VC0P0, output 	continue_VC1P0, output 	continue_VC0P1, output 	continue_VC1P1, output [7:0] umbrales_VCFC , output active , output idle , output error);
    
    wire [4:0]	ofifo_VC0P0;
    wire [4:0]	ofifo_VC1P0;
@@ -45,27 +44,24 @@ module PCIE_trans (input clk , input reset, input valid_p0 , input valid_p1 ,inp
    reg [4:0]	data_VC0P1;
    reg [4:0]	data_VC1P1;
    
-  
-   
-   wire [7:0] 	umbrales_VCFC;		// From fsm of fsmControl.v
 
    always @(posedge clk) begin
-      data_VC0P0 <=data_p0[5] ? 0 : data_p0[4:0] ;
-      push_VC0P0 <=data_p0[5] ? 0 : 1 ;
+      data_VC0P0 <=data_p0[5] ? 0 : data_p0[4:0] ;       // se asigna a cada canal el dato correspondiente
+      push_VC0P0 <=valid_p0 ? (data_p0[5] ? 0 : 1) : 0 ; // señal de valid se pregunta primero para no enviar datos inválidos a los fifos
       
       data_VC1P0<= data_p0[5] ? data_p0[4:0] : 0  ;
-      push_VC1P0 <=data_p0[5]? 1 : 0 ;
+      push_VC1P0 <=valid_p0 ? (data_p0[5] ? 1 : 0) : 0 ; 
 
       data_VC0P1 <=data_p1[5] ? 0 : data_p1[4:0] ;
-      push_VC0P1 <=data_p1[5] ? 0 : 1 ;
+      push_VC0P1 <=valid_p1 ? (data_p1[5] ? 0 : 1) : 0 ;
       
       data_VC1P1<= data_p1[5] ? data_p1[4:0] : 0  ;
-      push_VC1P1 <=data_p1[5]? 1 : 0 ;
+      push_VC1P1 <=valid_p1 ? (data_p1[5] ? 1 : 0) : 0 ;
 
       valid_VC0P0<=data_p0[5]? 0 : valid_p0;
-      valid_VC0P1<=data_p0[5]? valid_p0 : 0 ;		   
-      valid_VC1P0<=data_p1[5] ? 0 : valid_p1;
-      valid_VC1P1<=data_p1[5] ? valid_p1 : 0;
+      valid_VC0P1<=data_p0[5]? 0 :valid_p0 ;		   
+      valid_VC1P0<=data_p1[5] ? valid_p1: 0 ;
+      valid_VC1P1<=data_p1[5] ? valid_p1 : 0 ;
 
 		if (reset) begin
 		   data_VC0P0 <= 0;
@@ -127,8 +123,11 @@ module PCIE_trans (input clk , input reset, input valid_p0 , input valid_p1 ,inp
 		    .push		(push_VC0P0),
 		    .valid		(valid_VC0P0),
 		    .data_in		(data_VC0P0),
-		    .umbralA		(umbralA),
-		    .umbralB		(umbralB));
+		    .umbralA		(umbrales_VCFC[7:4]),
+		    .umbralB		(umbrales_VCFC[3:0]));
+   
+   wire intermediate3 = !empty_VC1P0 && pop_VC1P0;
+   
    FIFO_mod fifo_VC1P0 ( 
 		    // Outputs
 		     .pause		(pause_V1CP0),
@@ -140,12 +139,15 @@ module PCIE_trans (input clk , input reset, input valid_p0 , input valid_p1 ,inp
 		    // Inputs
 		    .clk		(clk),
 		    .reset		(reset),
-		    .pop		(pop_VC1P0),
+		    .pop		(intermediate3),
 		    .push		(push_VC1P0),
 		    .valid		(valid_VC1P0),
 		    .data_in		(data_VC1P0),
-		    .umbralA		(umbralA),
-		    .umbralB		(umbralB));
+		    .umbralA		(umbrales_VCFC[7:4]),
+		    .umbralB		(umbrales_VCFC[3:0]));
+   
+   wire intermediate1 = !empty_VC0P1 && pop_VC0P1;
+ 
    FIFO_mod fifo_VC0P1 (
 		    // Outputs
 		    .pause		(pause_VC0P1),
@@ -157,12 +159,14 @@ module PCIE_trans (input clk , input reset, input valid_p0 , input valid_p1 ,inp
 		    // Inputs
 		    .clk		(clk),
 		    .reset		(reset),
-		    .pop		(pop_VC0P1),
+		    .pop		(intermediate1),
 		    .push		(push_VC0P1),
 		    .valid		(valid_VC0P1),
 		    .data_in		(data_VC0P1),
-		    .umbralA		(umbralA),
-		    .umbralB		(umbralB));
+		    .umbralA		(umbrales_VCFC[7:4]),
+		    .umbralB		(umbrales_VCFC[3:0]));
+   
+   wire intermediate2 = !empty_VC1P1 && pop_VC1P1;
    FIFO_mod fifo_VC1P1 (
 		    // Outputs
 		     .pause		(pause_V1CP1),
@@ -174,13 +178,16 @@ module PCIE_trans (input clk , input reset, input valid_p0 , input valid_p1 ,inp
 		    // Inputs
 		    .clk		(clk),
 		    .reset		(reset),
-		    .pop		(pop_VC1P1),
+		    .pop		(intermediate2),
 		    .push		(push_VC1P1),
 		    .valid		(valid_VC1P1),
 		    .data_in		(data_VC1P1),
-		    .umbralA		(umbralA),
-		    .umbralB		(umbralB));
+		    .umbralA		(umbrales_VCFC[7:4]),
+		    .umbralB		(umbrales_VCFC[3:0]));
 
+   wire FIFO_error = fifoerr_VC0P0 || fifoerr_VC0P1 || fifoerr_VC1P1 || fifoerr_VC1P0;
+   wire FIFO_empty = empty_VC0P0 && empty_VC0P1 && empty_VC1P0 &&  empty_VC1P1 ;
+   
    fsmControl fsm(
 		  // Outputs
 		  .umbrales_VCFC	(umbrales_VCFC),
@@ -189,7 +196,7 @@ module PCIE_trans (input clk , input reset, input valid_p0 , input valid_p1 ,inp
 		  .error		(error),
 		  // Inputs
 		  .clk			(clk),
-		  .reset_L		(reset_L),
+		  .reset_L		(reset),
 		  .init			(init),
 		  .umbral_VCFC		({umbralA,umbralB}),
 		  .FIFO_error		(FIFO_error),
